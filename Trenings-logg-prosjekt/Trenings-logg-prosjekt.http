@@ -1,0 +1,6 @@
+@Trenings_logg_prosjekt_HostAddress = http://localhost:5196
+
+GET {{Trenings_logg_prosjekt_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
