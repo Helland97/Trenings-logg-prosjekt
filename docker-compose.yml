@@ -1,0 +1,28 @@
+version: "3.9"
+
+services:
+  db:
+    image: postgres:16
+    container_name: postgres_db
+    environment:
+      POSTGRES_DB: workouts
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+  backend:
+    build:
+      context: ./backend
+    container_name: backend_api
+    environment:
+      ConnectionStrings__DefaultConnection: Host=db;Database=workouts;Username=postgres;Password=postgres
+    depends_on:
+      - db
+    ports:
+      - "5000:8080"
+
+volumes:
+  postgres_data:
