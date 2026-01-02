@@ -32,4 +32,10 @@ app.UseHttpsRedirection();
 
 app.MapControllers();
 
+app.MapGet("/health", () =>
+{
+    return Results.Ok(new { status = "Healthy" });
+});
+
+
 app.Run();
